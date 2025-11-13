@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+// add import at the top
+import { cubicBezier } from "@popmotion/easing";
 
 const brands = [
   "Ajinomoto",
@@ -53,17 +55,18 @@ const Full_About = () => {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1],
-      },
-    },
-  };
+// change the variant
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: cubicBezier(0.65, 0.05, 0.36, 1) // => returns an easing function accepted by framer-motion's types
+    }
+  }
+};
 
   return (
     <motion.div
